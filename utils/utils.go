@@ -3,8 +3,21 @@ package utils
 import (
 	"bufio"
 	"io/ioutil"
+	"log"
 	"os"
+	"strconv"
 )
+
+func ParseInt(lines []string, base int) (result []int) {
+	for _, l := range lines {
+		if i, err := strconv.ParseInt(l, base, 0); err != nil {
+			log.Fatal(err)
+		} else {
+			result = append(result, int(i))
+		}
+	}
+	return
+}
 
 // ReadLines reads a file and returns the lines
 func ReadLines(filename string) []string {
