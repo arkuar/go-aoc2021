@@ -22,7 +22,7 @@ func ParseInt(lines []string, base int) (result []int) {
 // ReadLines reads a file and returns the lines
 func ReadLines(filename string) []string {
 	f, err := os.Open(filename)
-	check(err)
+	Check(err)
 	defer f.Close()
 
 	sc := bufio.NewScanner(f)
@@ -36,7 +36,7 @@ func ReadLines(filename string) []string {
 // ReadIntLines reads a file and returns the lines as integers
 func ReadIntLines(filename string) []int {
 	f, err := os.Open(filename)
-	check(err)
+	Check(err)
 	defer f.Close()
 
 	sc := bufio.NewScanner(f)
@@ -50,7 +50,7 @@ func ReadIntLines(filename string) []int {
 // ReadLinesSplit reads a file using a user defined split function and returns the lines
 func ReadLinesSplit(filename string, split bufio.SplitFunc) []string {
 	f, err := os.Open(filename)
-	check(err)
+	Check(err)
 	defer f.Close()
 
 	sc := bufio.NewScanner(f)
@@ -66,13 +66,13 @@ func ReadLinesSplit(filename string, split bufio.SplitFunc) []string {
 // ReadFile reads a file and returns it as a single string
 func ReadFile(filename string) string {
 	buf, err := ioutil.ReadFile(filename)
-	check(err)
+	Check(err)
 
 	return string(buf)
 
 }
 
-func check(err error) {
+func Check(err error) {
 	if err != nil {
 		panic(err)
 	}

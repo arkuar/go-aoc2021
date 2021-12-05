@@ -7,7 +7,7 @@ import (
 // ConvertToInt converts a string to integer
 func ConvertToInt(s string) int {
 	value, err := strconv.Atoi(s)
-	check(err)
+	Check(err)
 	return value
 }
 
