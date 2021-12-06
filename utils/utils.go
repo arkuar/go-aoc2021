@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"bytes"
 	"io/ioutil"
 	"log"
 	"os"
@@ -47,8 +48,27 @@ func ReadIntLines(filename string) []int {
 	return lines
 }
 
+// Read lines and split them at the separator
+func ReadLinesSplit(filename string, separator rune) []string {
+	splitFunc := func(data []byte, atEOF bool) (advance int, token []byte, err error) {
+		if atEOF && len(data) == 0 {
+			return 0, nil, nil
+		}
+
+		if i := bytes.IndexByte(data, byte(separator)); i >= 0 {
+			return i + 1, data[0:i], nil
+		}
+
+		if atEOF {
+			return len(data), data, nil
+		}
+		return
+	}
+	return ReadLinesSplitFunc(filename, splitFunc)
+}
+
 // ReadLinesSplit reads a file using a user defined split function and returns the lines
-func ReadLinesSplit(filename string, split bufio.SplitFunc) []string {
+func ReadLinesSplitFunc(filename string, split bufio.SplitFunc) []string {
 	f, err := os.Open(filename)
 	Check(err)
 	defer f.Close()

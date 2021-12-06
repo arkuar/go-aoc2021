@@ -3,11 +3,10 @@ package main
 import (
 	"aoc-2021/utils"
 	"fmt"
-	"strings"
 )
 
 func main() {
-	input := utils.ParseInt(strings.Split(utils.ReadFile("./input"), ","), 10)
+	input := utils.ParseInt(utils.ReadLinesSplit("./input", ','), 10)
 	initialState := initFish(input)
 	fmt.Printf("Part 1: %d\n", countFish(initialState, 80))
 	fmt.Printf("Part 2: %d", countFish(initialState, 256))
