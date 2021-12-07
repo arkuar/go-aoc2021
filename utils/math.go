@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"sort"
 	"strconv"
 )
 
@@ -25,4 +26,18 @@ func Abs(x int) int {
 		return -x
 	}
 	return x
+}
+
+func Median(numbers []int) int {
+	sort.Ints(numbers)
+	if len(numbers)%2 == 0 {
+		return (numbers[len(numbers)/2] + (numbers[len(numbers)/2] + 1)) / 2
+	} else {
+		return numbers[(len(numbers)+1)/2]
+	}
+}
+
+func Mean(numbers []int) int {
+	sum := SumSlice(numbers)
+	return (sum + 1) / len(numbers)
 }
