@@ -6,8 +6,17 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 )
+
+func SortString(s string) string {
+	r := []rune(s)
+	sort.Slice(r, func(i, j int) bool {
+		return r[i] < r[j]
+	})
+	return string(r)
+}
 
 func ParseInt(lines []string, base int) (result []int) {
 	for _, l := range lines {
