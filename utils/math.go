@@ -20,6 +20,14 @@ func SumSlice(numbers []int) (sum int) {
 	return
 }
 
+func MulSlice(numbers []int) int {
+	result := 1
+	for _, n := range numbers {
+		result *= n
+	}
+	return result
+}
+
 // Return the absolute value of x
 func Abs(x int) int {
 	if x < 0 {
